@@ -1,7 +1,5 @@
 from flask import Flask, jsonify, request
 app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['ENV'] = 'development'
 
 todos = [
     { "label": "My first task", "done": False },
@@ -14,23 +12,43 @@ def hello_world():
 
     return json_text
 
+
+
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
-    request_body = request.json
-    
-    
-    
-    
-    print("Incoming request with the following body", request_body)
-    return "todos"
+   
+    # request_body = request.json
+    request_body = request.get_json(force=True)
+    todos.append(request_body)
 
-# **************************************************************** #
-# DELETE
+    print("Incoming request with the following body", request_body, todos)
+   
+   
+    return jsonify(todos) 
 
+
+#"""DELETE"""#
 @app.route('/todos/<int:position>', methods=['DELETE'])
+
 def delete_todo(position):
-    print("This is the position to delete: ",position)
-    return 'something'
+     id == position
+     todos.pop(position)
+    
+     print("This is the position to delete: ",position)
+    
+     return jsonify(todos)
+
+
+
+
+
+
+# 
+#     request_body = request.get_json(force=True) 
+#     print("Incoming request with the following body", request_body)
+   
+   
+#     return jsonify(todos)
 
 
 if __name__ == '__main__':
