@@ -3,7 +3,10 @@ app = Flask(__name__)
 
 todos = [
     { "label": "My first task", "done": False },
-    { "label": "My second task", "done": False }
+    { "label": "My second task", "done": False },
+    { "label": "My thid task", "done": False },
+    { "label": "My fourth task", "done": False },
+    { "label": "My fith task", "done": False }
 ]
 
 @app.route('/todos', methods=['GET'])
